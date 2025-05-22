@@ -1,23 +1,29 @@
-// Importo todo lo de la libreria de Express
 import express from "express";
+import cors from "cors";
 
-//importo las rutas
+// Importa las rutas
 import productsRoutes from "./src/routes/products.js";
 import customersRoutes from "./src/routes/customers.js";
 import employeeRoutes from "./src/routes/employees.js";
 
-
-// Creo una constante que es igual a la libreria que importé
+// Crea la instancia de Express
 const app = express();
 
-//Que acepte datos en json
+// Configurar CORS para permitir solicitudes desde el frontend
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+
+// Middleware para aceptar JSON
 app.use(express.json());
 
-
-// Definir las rutas de las funciones que tendrá la página web
+// Definir las rutas
 app.use("/api/products", productsRoutes);
 app.use("/api/customers", customersRoutes);
-app.use("/api/employee", employeeRoutes);
+app.use("/api/employees", employeeRoutes);
 
-// Exporto la constante para poder usar express en otros archivos
+// Manejo de errores para rutas no encontradas
+app.use((req, res) => {
+  res.status(404).json({ message: "Ruta no encontrada" });
+});
+
+// Exporta el servidor
 export default app;
