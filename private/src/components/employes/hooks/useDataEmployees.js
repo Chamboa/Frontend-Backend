@@ -19,21 +19,6 @@ const useDataEmployees = () => {
   const [issnumber, setIssnumber] = useState("");
   const [editing, setEditing] = useState(false);
 
-  useEffect(() => {
-    const fetchEmployees = async () => {
-      try {
-        const response = await fetch(API_EMPLOYEES);
-        if (!response.ok) throw new Error("Error al cargar empleados");
-        const data = await response.json();
-        setEmployees(data);
-      } catch (error) {
-        console.error(error);
-        toast.error("Error al cargar empleados");
-      }
-    };
-    fetchEmployees();
-  }, []);
-
   const cleanData = () => {
     setId("");
     setName("");
@@ -53,9 +38,12 @@ const useDataEmployees = () => {
   const setEmployeeToEdit = (employee) => {
     if (!employee) {
       console.error("Empleado no definido en setEmployeeToEdit");
+      cleanData();
       return;
     }
   
+    console.log("Configurando empleado para editar:", employee); // Debug
+    
     setId(employee._id || "");
     setName(employee.name || "");
     setLastName(employee.lastName || "");
@@ -116,9 +104,11 @@ const useDataEmployees = () => {
       }
 
       cleanData();
+      return true; // Indica éxito
     } catch (error) {
       toast.error(error.message);
       console.error(error);
+      return false; // Indica error
     }
   };
 
@@ -151,7 +141,8 @@ const useDataEmployees = () => {
     handleSubmit,
     cleanData,
     setEmployeeToEdit,
-    editing
+    editing,
+    setEditing
   };
 };
 

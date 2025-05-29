@@ -1,12 +1,7 @@
 import React from "react";
 import EmployeeItem from "./EmployeeItem";
-import useEmployees from "./hooks/useEmployees";
-import EmployeeForm from "./EmployeeForm";
 
-const EmployeeList = () => {
-  const { employees, loading, error, deleteEmployee, selectEmployeeForEdit, employeeToEdit } =
-    useEmployees();
-
+const EmployeeList = ({ employees, loading, error, onDelete, onEdit }) => {
   if (loading) return <div>Cargando empleados...</div>;
   if (error) return <div>Error al cargar empleados: {error}</div>;
 
@@ -29,13 +24,12 @@ const EmployeeList = () => {
             <EmployeeItem
               key={employee._id}
               employee={employee}
-              onDelete={() => deleteEmployee(employee._id)}
-              onEdit={() => selectEmployeeForEdit(employee)}
+              onDelete={() => onDelete(employee._id)}
+              onEdit={() => onEdit(employee)}
             />
           ))}
         </tbody>
       </table>
-
     </div>
   );
 };

@@ -1,19 +1,19 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import EmployeesPage from './pages/EmployeesPage';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import NavigationBar from "./components/navigationBar.jsx";
+import EmployeesPage from "./pages/EmployeesPage";
+import CustomersPage from "./pages/CustomersPage";
 
-function App() {
+const App = () => {
   return (
     <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/employees" element={<EmployeesPage />} />
-          <Route path="/" element={<EmployeesPage />} />
-        </Routes>
-      </div>
+      <NavigationBar />
+      <Routes>
+        <Route path="/employees" element={<EmployeesPage />} />
+        <Route path="/customers" element={<CustomersPage />} />
+      </Routes>
     </Router>
   );
-}
+};
 
 export default App;

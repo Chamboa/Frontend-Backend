@@ -9,25 +9,27 @@ const useEmployees = () => {
   const [error, setError] = useState(null);
   const [employeeToEdit, setEmployeeToEdit] = useState(null);
 
+  const fetchEmployees = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(API_EMPLOYEES, { headers: { Accept: "application/json" } });
+      if (!response.ok) throw new Error(`Error del servidor: ${response.status} ${response.statusText}`);
+
+      const text = await response.text();
+      if (text.startsWith("<!DOCTYPE html>")) throw new Error("El servidor devolvió HTML en lugar de JSON.");
+
+      const data = JSON.parse(text);
+      setEmployees(data);
+      setError(null);
+    } catch (err) {
+      console.error("Error al obtener empleados:", err);
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchEmployees = async () => {
-      try {
-        const response = await fetch(API_EMPLOYEES, { headers: { Accept: "application/json" } });
-        if (!response.ok) throw new Error(`Error del servidor: ${response.status} ${response.statusText}`);
-
-        const text = await response.text();
-        if (text.startsWith("<!DOCTYPE html>")) throw new Error("El servidor devolvió HTML en lugar de JSON.");
-
-        const data = JSON.parse(text);
-        setEmployees(data);
-      } catch (err) {
-        console.error("Error al obtener empleados:", err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchEmployees();
   }, []);
 
@@ -45,7 +47,12 @@ const useEmployees = () => {
   };
 
   const selectEmployeeForEdit = (employee) => {
+    console.log("Seleccionando empleado para editar:", employee); // Debug
     setEmployeeToEdit(employee);
+  };
+
+  const refreshEmployees = () => {
+    fetchEmployees();
   };
 
   return {
@@ -55,6 +62,7 @@ const useEmployees = () => {
     deleteEmployee,
     selectEmployeeForEdit,
     employeeToEdit,
+    refreshEmployees,
   };
 };
 

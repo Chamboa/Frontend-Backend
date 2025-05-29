@@ -1,0 +1,118 @@
+/* Estilo general */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+  }
+  
+  /* Contenedor principal */
+  .customers-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Título */
+  .customers-container h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  /* Contenedor de contenido */
+  .customers-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Estilo de la tabla */
+  .customer-list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .customer-list th, .customer-list td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .customer-list th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  /* Botones */
+  .btn-edit, .btn-delete {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 0 5px;
+  }
+  
+  .btn-edit {
+    background-color: #ffc107;
+    color: black;
+  }
+  
+  .btn-delete {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .btn-edit:hover {
+    background-color: #e0a800;
+  }
+  
+  .btn-delete:hover {
+    background-color: #c82333;
+  }
+  
+  /* Formulario */
+  .customer-form {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .customer-form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .customer-form button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .customer-form .btn-submit {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .customer-form .btn-cancel {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  .customer-form .btn-submit:hover {
+    background-color: #218838;
+  }
+  
+  .customer-form .btn-cancel:hover {
+    background-color: #5a6268;
+  }
