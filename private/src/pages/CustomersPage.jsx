@@ -1,5 +1,5 @@
 import React from 'react';
-import CustomerForm from '../components/customers/customerForm.jsx';
+import CustomerForm from '../components/customers/CustomerForm.jsx';
 import CustomerList from '../components/customers/CustomerList';
 import { Toaster } from 'react-hot-toast';
 import useCustomers from '../components/customers/hooks/useCustomers';
